@@ -1,1 +1,12 @@
-<p>user works!</p>
+<div class="row mt-3">
+    <div class="col">
+        <div class="d-flex">
+            <h3>Gebruikers lijst</h3>
+            <a routerLink="add" class="btn btn-primary ms-4">Nieuwe gebruiker</a>
+        </div>
+        <app-user-list></app-user-list>
+    </div>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+</div>

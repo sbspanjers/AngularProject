@@ -1,0 +1,11 @@
+<h3>Gebruiker toevoegen</h3>
+<form #userAddForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="name" class="form-label">Naam:</label>
+    <input [(ngModel)]="user.name" #name="ngModel" name="name" type="string" class="form-control" placeholder="John Doe">
+    <label for="emailAdress" class="form-label">Email:</label>
+    <input [(ngModel)]="user.emailAdress" #emailAdress="ngModel" name="email" type="email" class="form-control" placeholder="name@mail.com">
+    <label for="isAdult">18+</label>
+    <input [(ngModel)]="user.isAdult" #isAdult="ngModel" type="checkbox" name="isAdult" [checked]="false"><br>
+    <button class="btn btn-primary mt-3" type="submit">Voeg gebruiker toe</button>
+    <a class="btn btn-secondary ms-2 mt-3" routerLink="/users">Cancel</a>
+</form>

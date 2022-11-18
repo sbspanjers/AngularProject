@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Naam</th>
+      <th scope="col">Email</th>
+      <th scope="col">18+</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="singleUserTable" *ngFor="let user of users">
+        <th>{{ user.id }}</th>
+        <td>{{ user.name }}</td>
+        <td>{{ user.emailAdress }}</td>
+        <td *ngIf="user.isAdult"><i class="fa-solid fa-check"></i></td>
+        <td *ngIf="!user.isAdult"><i class="fa-solid fa-xmark"></i></td>
+        <td><a routerLink="{{ user.id }}/edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+  </tbody>
+</table>
