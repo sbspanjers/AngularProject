@@ -5,13 +5,14 @@ import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+  templateUrl: './user-add-edit.component.html',
+  styleUrls: ['./user-add-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserAddEditComponent implements OnInit {
   userId: string | null = null;
   user: User | null = null;
   editUser = new User('', '', false);
+  userExists = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute,
     private router: Router,
@@ -27,6 +28,7 @@ export class UserEditComponent implements OnInit {
         this.editUser.name = this.user!.name;
         this.editUser.emailAdress = this.user!.emailAdress;
         this.editUser.isAdult = this.user!.isAdult;
+        this.userExists = true;
       } else {
         // Nieuwe user
         this.user = new User();
@@ -35,8 +37,13 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('submit edit user');
-    this.userService.updateUser(this.editUser!);
+    if (this.userExists) {
+      console.log('submit edit user');
+      this.userService.updateUser(this.editUser!);
+    } else {
+      console.log('submit add user');
+      this.userService.addUser(this.editUser!);
+    }
     this.router.navigate(['users']);
   }
 }

@@ -8,9 +8,9 @@ import { UserComponent } from './pages/user/user.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
-import { UserEditComponent } from './pages/user/user-edit/user-edit.component';
-import { UserAddComponent } from './pages/user/user-add/user-add.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     HomePageComponent,
     NavbarComponent,
     UserListComponent,
-    UserEditComponent,
-    UserAddComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    UserAddEditComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

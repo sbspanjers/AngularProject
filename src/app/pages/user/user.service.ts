@@ -52,4 +52,12 @@ export class UserService {
     let index = this.users.indexOf(user!);
     this.users[index] = updatedUser;
   }
+
+  deleteUser(userToDelete: number) {
+    console.log("Delete user("+ userToDelete +")");
+    
+    let user = this.users.find((obj) => obj.id == userToDelete);
+    let index = this.users.indexOf(user!);
+    this.users.splice(index, 1);
+  }
 }

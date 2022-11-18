@@ -1,0 +1,12 @@
+.editBtn {
+    border: none;
+    color: orange;
+    padding: 8px;
+}
+
+.deleteBtn {
+    border: none;
+    color: red;
+    padding: 8px;
+    cursor: pointer;
+}
