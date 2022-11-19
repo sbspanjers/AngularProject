@@ -21,7 +21,7 @@ import { FooterComponent } from './footer/footer.component';
     UserListComponent,
     AboutPageComponent,
     UserAddEditComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

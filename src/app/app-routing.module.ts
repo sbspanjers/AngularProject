@@ -7,9 +7,9 @@ import { UserComponent } from './pages/user/user.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'users', component: UserComponent },  
-  { path: 'users/:id/edit', pathMatch: 'full', component: UserAddEditComponent },
-  { path: 'users/add', pathMatch: 'full', component: UserAddEditComponent },  
+  { path: 'users', component: UserComponent },
+  { path: 'users/:id/edit', component: UserAddEditComponent },
+  { path: 'users/add', component: UserAddEditComponent },  
   { path: 'about', component: AboutPageComponent },
 ];
 

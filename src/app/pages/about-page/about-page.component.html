@@ -1,4 +1,85 @@
 <div class="container">
     <h1>About page</h1>
-    <p>Ik ben Stijn Spanjers | 2188578</p>
+    <h4>Dit is MealToEat</h4>
+    <p>Met deze website kunnen gebruikers maaltijd bekijken als ze niet weten wat ze moeten koken.<br>
+        Dat is erg handig als je weinig tijd hebt of het gewoon niet weet.
+    </p>
+    <p>Stijn Spanjers | 2188578</p>
+
+    <h4>Entiteiten</h4>
+    <div class="row">
+        <div class="col">
+            <p>ERD-diagram:</p>
+            <img src="../../../assets/ERD-mealtoeat.png" style="width: 100%;" alt="erd van meal to eat">
+        </div>
+        <div class="col">
+            <div class="row row-cols-3 g-2">
+                <div class="col">
+                    <div class="entiteit">
+                        <p>User:</p>
+                        <ul>
+                            <li>id: number</li>
+                            <li>name: string</li>
+                            <li>emailAdress: string</li>
+                            <li>isAdult: boolean</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="entiteit">
+                        <p>Stap:</p>
+                        <ul>
+                            <li>id: number</li>
+                            <li>uitleg: string</li>
+                            <li>stapvolgorde: number</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="entiteit">
+                        <p>Kooklijst:</p>
+                        <ul>
+                            <li>id: number</li>
+                            <li>name: string</li>
+                            <li>aantal: number</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="entiteit">
+                        <p>Ingredient:</p>
+                        <ul>
+                            <li>id: number</li>
+                            <li>name: string</li>
+                            <li>hoeveelheid: number</li>
+                            <li>gewichtmaat: enum</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="entiteit">
+                        <p>Recept:</p>
+                        <ul>
+                            <li>id: number</li>
+                            <li>name: string</li>
+                            <li>imgUrl: string</li>
+                            <li>aantalPersonen: number</li>
+                            <li>bereidtijd: number</li>
+                            <li>kcal: number</li>
+                            <li>typegerecht: Type</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4>Userstories</h4>
+    <ol>
+        <li>Als gebruiker wil ik een overzicht van recepten zien.</li>
+        <li>Als gebruiker wil ik een recept bekijken die ik kan gaan koken.</li>
+        <li>Als gebruiker wil ik kunnen inloggen.</li>
+        <li>Als gebruiker wil ik door een paar producten in te voeren een paar recepten terug krijgen die die producten bevatten.</li>
+        <li>Als gebruiker wil ik een recept aan kunnen maken zodat andere die kunnen bekijken.</li>
+        <li>Als gebruiker wil ik een lijst aanmaken waar ik recepten kan opslaan.</li>
+    </ol>
 </div>
