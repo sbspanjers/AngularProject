@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "nx",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "start": "nx serve",
+    "build": "nx build",
+    "watch": "nx build --watch --configuration development",
+    "test": "nx test",
     "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,
@@ -37,6 +37,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "nx": "15.2.1",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "prettier": "^2.6.2"
   }
 }

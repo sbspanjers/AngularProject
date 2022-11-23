@@ -1,0 +1,94 @@
+{
+  "name": "AngularProjectMeal",
+  "projectType": "application",
+  "generators": {},
+  "sourceRoot": "apps/AngularProjectMeal/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/AngularProjectMeal",
+        "index": "apps/AngularProjectMeal/src/index.html",
+        "main": "apps/AngularProjectMeal/src/main.ts",
+        "polyfills": "apps/AngularProjectMeal/src/polyfills.ts",
+        "tsConfig": "apps/AngularProjectMeal/tsconfig.app.json",
+        "assets": [
+          "apps/AngularProjectMeal/src/favicon.ico",
+          "apps/AngularProjectMeal/src/assets"
+        ],
+        "styles": [
+          "apps/AngularProjectMeal/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/AngularProjectMeal/src/environments/environment.ts",
+              "with": "apps/AngularProjectMeal/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "AngularProjectMeal:build:production"
+        },
+        "development": {
+          "browserTarget": "AngularProjectMeal:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "AngularProjectMeal:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/AngularProjectMeal/src/test.ts",
+        "polyfills": "apps/AngularProjectMeal/src/polyfills.ts",
+        "tsConfig": "apps/AngularProjectMeal/tsconfig.spec.json",
+        "karmaConfig": "apps/AngularProjectMeal/karma.conf.js",
+        "assets": [
+          "apps/AngularProjectMeal/src/favicon.ico",
+          "apps/AngularProjectMeal/src/assets"
+        ],
+        "styles": [
+          "apps/AngularProjectMeal/src/styles.css"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}
