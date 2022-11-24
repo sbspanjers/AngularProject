@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <h3 *ngIf="recipeExists">Verander maaltijd: {{ recipe!.name }}</h3>
+        <h3 *ngIf="!recipeExists">Nieuw recept</h3>
+    </div>
+    <div class="row">
+        <form #recipeEditForm="ngForm" (ngSubmit)="onSubmit()">
+            <label for="name" class="form-label">Naam:</label>
+            <input [(ngModel)]="editRecipe.name" type="name" class="form-control" #name="ngModel" name="name" [value]="recipe!.name" required minlength="1">
+            <p *ngIf="!name.valid && name.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een recept naam in.</p>
+
+            <label for="imgUrl" class="form-label">Image url:</label>
+            <input [(ngModel)]="editRecipe.imgUrl" type="text" class="form-control" #imgUrl="ngModel" name="imgUrl" [value]="recipe!.imgUrl" required minlength="1">
+            <p *ngIf="!imgUrl.valid && imgUrl.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer een image url in.</p>
+
+            <label for="personCount" class="form-label">Aantal personen:</label>
+            <input [(ngModel)]="editRecipe.personCount" type="number" class="form-control" #personCount="ngModel" name="personCount" [value]="recipe!.personCount" required min="1">
+            <p *ngIf="!personCount.valid && personCount.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer een getal in.</p>
+
+            <label for="cookingTime" class="form-label">Bereidingstijd (minuten):</label>
+            <input [(ngModel)]="editRecipe.cookingTime" type="number" class="form-control" #cookingTime="ngModel" name="cookingTime" [value]="recipe!.cookingTime" required min="1">
+            <p *ngIf="!cookingTime.valid && cookingTime.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer het aantal minuten in.</p>
+
+            <label for="kcal" class="form-label">Calorieën:</label>
+            <input [(ngModel)]="editRecipe.kcal" type="number" class="form-control" #kcal="ngModel" name="kcal" [value]="recipe!.kcal" required min="1">
+            <p *ngIf="!kcal.valid && kcal.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer het aantal calorieën in.</p>
+
+            <label for="typeMeal" class="form-label">Type maaltijd:</label>
+            <input [(ngModel)]="editRecipe.typeMeal" type="text" class="form-control" #typeMeal="ngModel" name="typeMeal" [value]="recipe!.typeMeal" required minlength="1">
+            <p *ngIf="!typeMeal.valid && typeMeal.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer het type maaltijd in.</p>
+
+            <button *ngIf="recipeExists" class="btn btn-primary mt-3" type="submit">Verander recept</button>
+            <button *ngIf="!recipeExists" [disabled]="!recipeEditForm.valid" class="btn btn-primary mt-3" type="submit">Voeg recept toe</button>
+            <a class="btn btn-secondary ms-2 mt-3" routerLink="/recipes">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -11,6 +11,9 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
 import { FooterComponent } from './footer/footer.component';
+import { RecipeComponent } from './pages/recipe/recipe.component';
+import { SingleRecipeComponent } from './pages/recipe/single-recipe/single-recipe.component';
+import { RecipeAddEditComponent } from './pages/recipe/recipe-add-edit/recipe-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,12 @@ import { FooterComponent } from './footer/footer.component';
     AboutPageComponent,
     UserAddEditComponent,
     FooterComponent,
+    RecipeComponent,
+    SingleRecipeComponent,
+    RecipeAddEditComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,39 @@
+.back-btn {
+    width: fit-content;
+    color: black;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+.editBtn {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 12px 0 0 12px;
+}
+
+.editBtn:hover {
+    color: black;
+}
+
+.deleteBtn {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 0 12px 12px 0;
+}
+
+.deleteBtn:hover {
+    color: black;
+}
+
+.imgPlace {
+    width: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+}

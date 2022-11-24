@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row mt-3">
+    <div class="row">
         <h3 *ngIf="userExists">Hoi {{ user!.name }}</h3>
         <h3 *ngIf="!userExists">Nieuwe gebruiker</h3>
     </div>
@@ -7,8 +7,10 @@
         <form #userEditForm="ngForm" (ngSubmit)="onSubmit()">
         <label for="name" class="form-label">Naam:</label>
         <input [(ngModel)]="editUser.name" type="name" class="form-control" #name="ngModel" name="name" [value]="user!.name" required minlength="1">
+        <p *ngIf="!name.valid && name.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul uw naam in.</p>
         <label for="emailAdress" class="form-label">Email:</label>
-        <input [(ngModel)]="editUser.emailAdress" type="email" class="form-control" #emailAdress="ngModel" name="emailAdress" [value]="user?.emailAdress" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <input [(ngModel)]="editUser.emailAdress" type="email" class="form-control" #emailAdress="ngModel" name="emailAdress" [value]="user?.emailAdress" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$">
+        <p *ngIf="!emailAdress.valid && emailAdress.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Niet valide emailadres.</p>
         <label for="isAdult">18+</label>
         <input type="checkbox" [(ngModel)]="editUser.isAdult" #isAdult="ngModel" name="isAdult" [checked]="user!.isAdult"><br>
         <button *ngIf="userExists" class="btn btn-primary mt-3" type="submit">Verander gebruiker</button>

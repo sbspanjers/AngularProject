@@ -16,7 +16,7 @@
         <td>{{ user.emailAdress }}</td>
         <td *ngIf="user.isAdult"><i class="fa-solid fa-check"></i></td>
         <td *ngIf="!user.isAdult"><i class="fa-solid fa-xmark"></i></td>
-        <td><a routerLink="{{ user.id }}/edit" class="editBtn"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a routerLink="{{ user.id }}/edit" class="editBtn"><i class="fa-solid fa-pencil"></i></a></td>
         <td><a (click)="deleteUser(user.id)" class="deleteBtn"><i class="fa-solid fa-trash"></i></a></td>
     </tr>
   </tbody>
