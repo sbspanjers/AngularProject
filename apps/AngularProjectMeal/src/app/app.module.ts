@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { SingleRecipeComponent } from './pages/recipe/single-recipe/single-recipe.component';
 import { RecipeAddEditComponent } from './pages/recipe/recipe-add-edit/recipe-add-edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { RecipeAddEditComponent } from './pages/recipe/recipe-add-edit/recipe-ad
     SingleRecipeComponent,
     RecipeAddEditComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

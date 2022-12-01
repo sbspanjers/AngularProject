@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './recipe.model';
+import { Recipe } from '../../../../../../libs/data/src/lib/recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -10,7 +10,9 @@ import { RecipeService } from './recipe.service';
 export class RecipeComponent implements OnInit {
   recipes: Recipe[] = [];
   constructor(private recipeService: RecipeService) {
-    this.recipes = recipeService.getRecipes();
+    recipeService.getRecipes().pipe().subscribe((recipesData: Recipe[]) => {
+      this.recipes = recipesData;
+    });
   }
 
   ngOnInit(): void {}

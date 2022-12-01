@@ -1,12 +1,12 @@
 export class Recipe {
-    id: number = 0;
-    name: string = '';
+    id = '';
+    name = '';
     createDate: Date = new Date(Date.now());
-    imgUrl: string = '';
-    personCount: number = 0;
-    cookingTime: number = 0;
-    kcal: number = 0;
-    typeMeal: string = '';
+    imgUrl = '';
+    personCount = 0;
+    cookingTime = 0;
+    kcal = 0;
+    typeMeal = '';
 
     constructor(name = '', createDate = new Date(Date.now()), imgUrl = '', personCount = 0, cookingTime = 0, kcal = 0, typeMeal = '') {
         this.name = name;

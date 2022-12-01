@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipe } from '../recipe.model'
+import { Recipe } from '../../../../../../../libs/data/src/lib/recipe.model'
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class RecipeAddEditComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.recipeId = params.get('id');
       if (this.recipeId) {
-        this.recipe = this.recipeService.getRecipeById(Number(this.recipeId));
+        this.recipe = this.recipeService.getRecipeById(this.recipeId);
         this.editRecipe.id = this.recipe.id;
         this.editRecipe.name = this.recipe.name;
         this.editRecipe.createDate = new Date(Date.now());

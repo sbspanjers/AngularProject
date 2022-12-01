@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipe } from '../recipe.model';
+import { Recipe } from '../../../../../../../libs/data/src/lib/recipe.model';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class SingleRecipeComponent implements OnInit {
       this.recipeId = params.get('id');
       if (this.recipeId) {
         // Bestaande user
-        this.recipe = this.recipeService.getRecipeById(Number(this.recipeId));
+        this.recipe = this.recipeService.getRecipeById(this.recipeId);
       } else {
         // Nieuwe user
         this.recipe = new Recipe();
@@ -29,7 +29,7 @@ export class SingleRecipeComponent implements OnInit {
   }
 
   deleteRecipe(): void {
-    this.recipeService.deleteRecipe(Number(this.recipeId!));
+    this.recipeService.deleteRecipe(this.recipeId!);
     this.router.navigate(['recipes'])
   }
 }

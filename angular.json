@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "AngularProjectMeal": "apps/AngularProjectMeal"
+    "AngularProjectMeal": "apps/AngularProjectMeal",
+    "data": "libs/data",
+    "meal-to-eat-api": "apps/meal-to-eat-api"
   }
 }

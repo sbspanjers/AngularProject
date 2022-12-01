@@ -1,8 +1,8 @@
 export class User {
-  id: number = 0;
-  name: string = '';
-  emailAdress: string = '';
-  isAdult: boolean = false;
+  id = 0;
+  name = '';
+  emailAdress = '';
+  isAdult = false;
 
   constructor(name = '', emailAdress = '', isAdult = false) {
     this.name = name;
