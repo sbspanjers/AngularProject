@@ -18,8 +18,8 @@ export class RecipeService {
 
     async getOne(recipeId: string): Promise<Recipe> {
         console.log('API: get one recipe (id: '+ recipeId +') aangeroepen!');
-        const users = await this.recipeModel.aggregate([{ $match: { id: recipeId }}]);        
-        return users[0];
+        const recipes = await this.recipeModel.aggregate([{ $match: { id: recipeId }}]);        
+        return recipes[0];
     }
 
     async deleteOne(recipeId: string): Promise<boolean> {

@@ -1,0 +1,12 @@
+input.ng-invalid[required].ng-touched {
+    border-color:red;
+}
+
+input.ng-valid[required].ng-touched {
+    border-color:green;
+}
+
+.otherLink {
+    color: grey;
+    text-decoration: none;
+}

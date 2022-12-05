@@ -15,6 +15,8 @@ import { RecipeComponent } from './pages/recipe/recipe.component';
 import { SingleRecipeComponent } from './pages/recipe/single-recipe/single-recipe.component';
 import { RecipeAddEditComponent } from './pages/recipe/recipe-add-edit/recipe-add-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeComponent,
     SingleRecipeComponent,
     RecipeAddEditComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

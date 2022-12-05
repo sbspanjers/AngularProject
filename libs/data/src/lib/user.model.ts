@@ -1,12 +1,11 @@
 export class User {
-  id = 0;
+  id = '';
   name = '';
-  emailAdress = '';
-  isAdult = false;
+  emailAddress = '';
 
-  constructor(name = '', emailAdress = '', isAdult = false) {
+  constructor(id = '', name = '', emailAddress = '') {
+    this.id = id;
     this.name = name;
-    this.emailAdress = emailAdress;
-    this.isAdult = isAdult;
+    this.emailAddress = emailAddress;
   }
 }

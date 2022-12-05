@@ -19,7 +19,7 @@ export class SingleRecipeComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.recipeId = params.get('id');
       if (this.recipeId) {
-        this.recipeService.getRecipeById(this.recipeId).pipe().subscribe((recipeData: Recipe) => {
+        this.recipeService.getRecipeById(this.recipeId).subscribe((recipeData: Recipe) => {
           this.recipe = recipeData;
         });
       } else {

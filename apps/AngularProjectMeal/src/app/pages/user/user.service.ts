@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from '../../../../../../libs/data/src/lib/user.model';
 
 
@@ -6,58 +8,44 @@ import { User } from '../../../../../../libs/data/src/lib/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  readonly users: User[] = [
-    {
-      id: 1,
-      name: 'Stijn Spanjers',
-      emailAdress: 'sb.spanjers@gmail.com',
-      isAdult: true,
-    },
-    {
-      id: 2,
-      name: 'Stan Tophoven',
-      emailAdress: 'saj.tophoven@gmail.com',
-      isAdult: true,
-    },
-    {
-      id: 3,
-      name: 'Thomas Quartel',
-      emailAdress: 'th.quartel@gmail.com',
-      isAdult: false,
-    }
-  ];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getUsers(): User[] {
+  private url = 'http://localhost:3333/api/data-api/user';
+
+  private headers = new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+  })
+
+  getUsers(): Observable<User[]> {
     console.log('alle users aangeroepen')
-    return this.users;
+    return this.httpClient.get<User[]>(this.url,
+      {
+        headers: this.headers,
+      }
+    )
   }
 
-  getUserById(id: number): User {
+  getUserById(id: string): Observable<User> {
     console.log('userid('+ id +') aangeroepen')
-    return this.users.filter((user) => user.id === id)[0];
+    return this.httpClient.get<User>(this.url + "/" + id, 
+    {
+      headers: this.headers,
+    })
   }
 
   addUser(newUser: User) {
     console.log("Add user " + newUser.name);
-    newUser.id = this.users.length + 1;
-    this.users.push(newUser);
   }
 
-  updateUser(updatedUser: User) {
-    console.log("Updating user " + updatedUser.name);
-    
-    let user = this.users.find((obj) => obj.id == updatedUser.id);
-    let index = this.users.indexOf(user!);
-    this.users[index] = updatedUser;
+  updateUser(updatedUser: User): Observable<string> {
+    console.log("Updating user " + updatedUser.id);
+    return this.httpClient.put<string>(this.url + `/${updatedUser.id}`, updatedUser, {
+      headers: this.headers,
+    });
   }
 
-  deleteUser(userToDelete: number) {
+  deleteUser(userToDelete: string) {
     console.log("Delete user("+ userToDelete +")");
-    
-    let user = this.users.find((obj) => obj.id == userToDelete);
-    let index = this.users.indexOf(user!);
-    this.users.splice(index, 1);
   }
 }

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h2>Log hier in</h2>
+    </div>
+    <div class="row">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <label for="username" class="form-label">Naam:</label>
+            <input [(ngModel)]="loginUser!.username" type="name" class="form-control" #username="ngModel" name="username" required minlength="1">
+            <p *ngIf="!username.valid && username.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul uw gebruikersnaam in.</p>
+
+            <label for="password" class="form-label">Wachtwoord:</label>
+            <input [(ngModel)]="loginUser!.password" type="password" class="form-control" #password="ngModel" name="password" required minlength="6">
+            <p *ngIf="!password.valid && password.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul uw wachtwoord van minimaal 6 karakters in.</p>
+
+            <button [disabled]="!loginForm.valid" class="btn btn-primary mt-3" type="submit">Login</button>
+            <p>Nog geen account? <a class="otherLink ms-2 mt-3" routerLink="/auth/register">Registreren</a></p>
+        </form>
+    </div>
+</div>

@@ -61,7 +61,7 @@ export class RecipeService {
   ]
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'http://localhost:3333/api/data-api/recipe'
+  private url = 'http://localhost:3333/api/data-api/recipe';
 
   private headers = new HttpHeaders({
       'Access-Control-Allow-Origin':'*',

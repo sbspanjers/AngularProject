@@ -10,8 +10,8 @@ import { UserService } from '../user.service';
 })
 export class UserAddEditComponent implements OnInit {
   userId: string | null = null;
-  user: User | null = null;
-  editUser = new User('', '', false);
+  user: User = new User;
+  editUser = new User('', '', '');
   userExists = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute,
@@ -23,12 +23,13 @@ export class UserAddEditComponent implements OnInit {
       this.userId = params.get('id');
       if (this.userId) {
         // Bestaande user
-        this.user = this.userService.getUserById(Number(this.userId));
-        this.editUser.id = this.user!.id;
-        this.editUser.name = this.user!.name;
-        this.editUser.emailAdress = this.user!.emailAdress;
-        this.editUser.isAdult = this.user!.isAdult;
-        this.userExists = true;
+        this.userService.getUserById(this.userId).subscribe((user: User) => {
+          this.user = user; 
+          this.editUser.id = user.id;
+          this.editUser.name = user.name;
+          this.editUser.emailAddress = user.emailAddress;
+          this.userExists = true;
+        });    
       } else {
         // Nieuwe user
         this.user = new User();
@@ -39,10 +40,10 @@ export class UserAddEditComponent implements OnInit {
   onSubmit(): void {
     if (this.userExists) {
       console.log('submit edit user');
-      this.userService.updateUser(this.editUser!);
+      this.userService.updateUser(this.editUser);
     } else {
       console.log('submit add user');
-      this.userService.addUser(this.editUser!);
+      this.userService.addUser(this.editUser);
     }
     this.router.navigate(['users']);
   }

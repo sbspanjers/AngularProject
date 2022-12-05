@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <h2>Registreer hier</h2>
+    </div>
+    <div class="row">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+            <label for="username" class="form-label">Naam:</label>
+            <input [(ngModel)]="newUser!.username" type="name" class="form-control" #username="ngModel" name="username" required minlength="1">
+            <p *ngIf="!username.valid && username.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een gebruikersnaam in.</p>
+
+            <label for="emailAddress" class="form-label">Email:</label>
+            <input [(ngModel)]="newUser!.emailAddress" type="email" class="form-control" #emailAddress="ngModel" name="emailAddress" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$">
+            <p *ngIf="!emailAddress.valid && emailAddress.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Niet valide emailadres.</p>
+
+            <label for="password" class="form-label">Wachtwoord:</label>
+            <input [(ngModel)]="newUser!.password" type="password" class="form-control" #password="ngModel" name="password" required minlength="6">
+            <p *ngIf="!password.valid && password.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een wachtwoord in met minimaal 6 karakters.</p>
+
+            <button [disabled]="!registerForm.valid" class="btn btn-primary mt-3" type="submit">Registreer</button>
+            <p>Al een account? <a class="otherLink ms-2 mt-3" routerLink="/auth/login">Login</a></p>
+        </form>
+    </div>
+</div>

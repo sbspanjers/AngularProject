@@ -11,7 +11,7 @@ export class RecipeComponent implements OnInit {
   recipes: Recipe[] = [];
   constructor(private recipeService: RecipeService) {
     recipeService.getRecipes().pipe().subscribe((recipesData: Recipe[]) => {
-      this.recipes = recipesData;
+      this.recipes = recipesData;   
     });
   }
 
