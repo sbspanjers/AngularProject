@@ -19,16 +19,16 @@ export class SingleRecipeComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.recipeId = params.get('id');
       if (this.recipeId) {
-        // Bestaande user
-        this.recipe = this.recipeService.getRecipeById(this.recipeId);
+        this.recipeService.getRecipeById(this.recipeId).pipe().subscribe((recipeData: Recipe) => {
+          this.recipe = recipeData;
+        });
       } else {
-        // Nieuwe user
         this.recipe = new Recipe();
       }
     });
   }
 
-  deleteRecipe(): void {
+  deleteRecipe(): void { 
     this.recipeService.deleteRecipe(this.recipeId!);
     this.router.navigate(['recipes'])
   }

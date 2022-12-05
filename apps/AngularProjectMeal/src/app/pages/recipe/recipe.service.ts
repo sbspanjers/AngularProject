@@ -61,20 +61,28 @@ export class RecipeService {
   ]
   constructor(private httpClient: HttpClient) { }
 
-  getRecipes(): Observable<Recipe[]> {
-    console.log('all repices aangeroepen');
-    const headers = new HttpHeaders({
+  private url = 'http://localhost:3333/api/data-api/recipe'
+
+  private headers = new HttpHeaders({
       'Access-Control-Allow-Origin':'*',
     });
-    return this.httpClient.get<Recipe[]>('http://localhost:3333/api/data-api/recipe',
+
+  getRecipes(): Observable<Recipe[]> {
+    console.log('all repices aangeroepen');
+    
+    return this.httpClient.get<Recipe[]>(this.url,
     {
-      headers: headers,
+      headers: this.headers,
     });
   }
 
-  getRecipeById(id: string): Recipe {
+  getRecipeById(id: string): Observable<Recipe> {
     console.log('recipeid(' + id + ') aangeroepen');
-    return this.recipes.filter((recipe) => recipe.id === id)[0];
+    
+    return this.httpClient.get<Recipe>(this.url + '/' + id,
+    {
+      headers: this.headers,
+    });
   }
 
   addRecipe(newRecipe: Recipe) {
@@ -91,10 +99,12 @@ export class RecipeService {
     this.recipes[index] = updatedRecipe;
   }
 
-  deleteRecipe(recipeIdToDelete: string) {
-    console.log('Delete recipe(' + recipeIdToDelete + ')');
-    let recipe = this.recipes.find((obj) => obj.id == recipeIdToDelete)
-    let index = this.recipes.indexOf(recipe!);
-    this.recipes.splice(index, 1)
+  deleteRecipe(id: string): Observable<boolean> {
+    console.log('Delete recipe(' + id + ')');
+
+    // hier werkt iets niet!
+    return this.httpClient.delete<boolean>(this.url + '/' + id, {
+    headers: this.headers,
+    });
   }
 }

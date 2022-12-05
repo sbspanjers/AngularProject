@@ -21,15 +21,17 @@ export class RecipeAddEditComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.recipeId = params.get('id');
       if (this.recipeId) {
-        this.recipe = this.recipeService.getRecipeById(this.recipeId);
-        this.editRecipe.id = this.recipe.id;
-        this.editRecipe.name = this.recipe.name;
+        this.recipeService.getRecipeById(this.recipeId).pipe().subscribe((recipeData: Recipe) => {
+          this.recipe = recipeData;
+        });
+        this.editRecipe.id = this.recipe!.id;
+        this.editRecipe.name = this.recipe!.name;
         this.editRecipe.createDate = new Date(Date.now());
-        this.editRecipe.imgUrl = this.recipe.imgUrl;
-        this.editRecipe.personCount = this.recipe.personCount;
-        this.editRecipe.cookingTime = this.recipe.cookingTime;
-        this.editRecipe.kcal = this.recipe.kcal;
-        this.editRecipe.typeMeal = this.recipe.typeMeal;
+        this.editRecipe.imgUrl = this.recipe!.imgUrl;
+        this.editRecipe.personCount = this.recipe!.personCount;
+        this.editRecipe.cookingTime = this.recipe!.cookingTime;
+        this.editRecipe.kcal = this.recipe!.kcal;
+        this.editRecipe.typeMeal = this.recipe!.typeMeal;
         this.recipeExists = true;
       } else {
         this.recipe = new Recipe();
