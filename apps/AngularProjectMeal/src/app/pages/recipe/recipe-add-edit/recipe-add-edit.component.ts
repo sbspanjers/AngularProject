@@ -11,7 +11,7 @@ import { RecipeService } from '../recipe.service';
 export class RecipeAddEditComponent implements OnInit {
   recipeId: string | null = null;
   recipe: Recipe | null = null;
-  editRecipe = new Recipe('', new Date(Date.now()), '', 0, 0, 0, '');
+  editRecipe = new Recipe;
   recipeExists = false;
   
   constructor(private recipeService: RecipeService, private route: ActivatedRoute, 
@@ -23,16 +23,16 @@ export class RecipeAddEditComponent implements OnInit {
       if (this.recipeId) {
         this.recipeService.getRecipeById(this.recipeId).pipe().subscribe((recipeData: Recipe) => {
           this.recipe = recipeData;
+          this.editRecipe.id = this.recipe!.id;
+          this.editRecipe.name = this.recipe!.name;
+          this.editRecipe.createDate = new Date(Date.now());
+          this.editRecipe.imgUrl = this.recipe!.imgUrl;
+          this.editRecipe.personCount = this.recipe!.personCount;
+          this.editRecipe.cookingTime = this.recipe!.cookingTime;
+          this.editRecipe.kcal = this.recipe!.kcal;
+          this.editRecipe.typeMeal = this.recipe!.typeMeal;
+          this.recipeExists = true;
         });
-        this.editRecipe.id = this.recipe!.id;
-        this.editRecipe.name = this.recipe!.name;
-        this.editRecipe.createDate = new Date(Date.now());
-        this.editRecipe.imgUrl = this.recipe!.imgUrl;
-        this.editRecipe.personCount = this.recipe!.personCount;
-        this.editRecipe.cookingTime = this.recipe!.cookingTime;
-        this.editRecipe.kcal = this.recipe!.kcal;
-        this.editRecipe.typeMeal = this.recipe!.typeMeal;
-        this.recipeExists = true;
       } else {
         this.recipe = new Recipe();
       }
@@ -42,10 +42,14 @@ export class RecipeAddEditComponent implements OnInit {
   onSubmit(): void {
     if(this.recipeExists) {
       console.log('submit edit recipe');
-      this.recipeService.editRecipe(this.editRecipe!)
+      this.recipeService.editRecipe(this.editRecipe!).subscribe((output: any) => {
+        console.log(output);
+      });
     } else {
       console.log('submit add recipe');
-      this.recipeService.addRecipe(this.editRecipe!)
+      this.recipeService.addRecipe(this.editRecipe!).subscribe((output: any) => {
+        console.log(output);
+      })
     }
     this.router.navigate(['recipes'])
   }

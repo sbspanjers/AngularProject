@@ -40,10 +40,9 @@ export class UserAddEditComponent implements OnInit {
   onSubmit(): void {
     if (this.userExists) {
       console.log('submit edit user');
-      this.userService.updateUser(this.editUser);
-    } else {
-      console.log('submit add user');
-      this.userService.addUser(this.editUser);
+      this.userService.updateUser(this.editUser).subscribe((user: User) => {
+        console.log(user);
+      });
     }
     this.router.navigate(['users']);
   }

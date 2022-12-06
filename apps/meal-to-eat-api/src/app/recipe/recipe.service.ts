@@ -22,11 +22,42 @@ export class RecipeService {
         return recipes[0];
     }
 
-    async deleteOne(recipeId: string): Promise<boolean> {
+    async deleteOne(recipeId: string): Promise<any> {
         console.log('API: delete recipe ' + recipeId);
+        let output;
 
-        this.recipeModel.findByIdAndRemove([{ $match: { id: recipeId }}]);
+        try {
+           output = await this.recipeModel.deleteOne({id: recipeId });
+        } catch (error) {
+            console.log(error);
+            
+        }
+        return output;
+    }
 
-        return true;
+    async updateOne(id: string, newData: Recipe): Promise<any> {
+        console.log('API: update recipe ' + id);
+        let output;
+
+        try {
+            output = await this.recipeModel.updateOne({ "id": id}, { $set: {"name": newData.name, "createDate": newData.createDate, "imgUrl": newData.imgUrl, "personCount": newData.personCount, "cookingTime": newData.cookingTime, "kcal": newData.kcal, "typeMeal": newData.typeMeal}})
+        } catch (error) {
+            console.log(error);
+        }
+
+        return output;
+    }
+
+    async createOne(newRecipe: Recipe): Promise<any> {
+        console.log('API: create new recipe');
+        
+        let output;
+        try {
+            output = new this.recipeModel({"name": newRecipe.name, "createDate": newRecipe.createDate, "imgUrl": newRecipe.imgUrl, "personCount": newRecipe.personCount, "cookingTime": newRecipe.cookingTime, "kcal": newRecipe.kcal, "typeMeal": newRecipe.typeMeal});
+            await output.save();
+        } catch (error) {
+            console.log(error);
+        }
+        return output;
     }
 }

@@ -1,6 +1,6 @@
 import { User } from '@MealToEat/data';
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
-
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { User as UserModel } from './user.schema'
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -18,7 +18,13 @@ export class UserController {
   }
 
   @Put(':id')
-  async editOne(@Body() body: User): Promise<string> {
-    return this.userService.editOne(body.id, body)
+  async editOne(@Param('id') id: string, @Body() updatedUser: User): Promise<string> {   
+    return await this.userService.editOne(updatedUser.id, updatedUser);
+  }
+
+  @Delete(':id')
+  async deleteOne(@Param('id') id: string): Promise<string> {
+    const userToDelete = await this.getOne(id)
+    return await this.userService.deleteOne(userToDelete);
   }
 }

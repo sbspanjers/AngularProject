@@ -3,11 +3,11 @@ import { Injectable } from '@nestjs/common';
 import { UserDocument, User as UserModel } from './user.schema';
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose';
-import { filter } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(UserModel.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(UserModel.name) private userModel: Model<UserDocument>, private authService: AuthService) {}
 
   async getAll(): Promise<User[]> {
     console.log('API: get all users aangeroepen!');
@@ -30,6 +30,20 @@ export class UserService {
       console.log(error);
     }
     
+    return output;
+  }
+
+  async deleteOne(userToDelete: User): Promise<string> {
+    console.log(`API: delete one user (id: ${userToDelete.id}) aangeroepen!`);
+    let output;
+
+    try {
+      output = await this.userModel.deleteOne({ "id": userToDelete.id});
+      await this.authService.deleteUser(userToDelete.emailAddress);
+    } catch (error) {
+      console.log(error);
+    }
+
     return output;
   }
 }

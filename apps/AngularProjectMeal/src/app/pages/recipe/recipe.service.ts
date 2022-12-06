@@ -85,25 +85,25 @@ export class RecipeService {
     });
   }
 
-  addRecipe(newRecipe: Recipe) {
+  addRecipe(newRecipe: Recipe): Observable<any> {
     console.log('Add recipe ' + newRecipe.name);
-    newRecipe.id = (this.recipes.length + 1).toString();
-    this.recipes.push(newRecipe)
+  
+    return this.httpClient.post<any>(this.url, newRecipe);
   }
 
-  editRecipe(updatedRecipe: Recipe) {
+  editRecipe(updatedRecipe: Recipe): Observable<any> {
     console.log('Edit recipe ' + updatedRecipe.name);
     
-    let recipe = this.recipes.find((obj) => obj.id == updatedRecipe.id)
-    let index = this.recipes.indexOf(recipe!);
-    this.recipes[index] = updatedRecipe;
+    return this.httpClient.put<any>(this.url + '/' + updatedRecipe.id, updatedRecipe, 
+    {
+      headers: this.headers,
+    });
   }
 
-  deleteRecipe(id: string): Observable<boolean> {
+  deleteRecipe(id: string): Observable<any> {
     console.log('Delete recipe(' + id + ')');
 
-    // hier werkt iets niet!
-    return this.httpClient.delete<boolean>(this.url + '/' + id, {
+    return this.httpClient.delete<any>(this.url + '/' + id, {
     headers: this.headers,
     });
   }

@@ -5,3 +5,19 @@ input.ng-invalid[required].ng-touched {
 input.ng-valid[required].ng-touched {
     border-color:green;
 }
+
+.imgExamplePlace {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.imgExample {
+    object-fit: cover;
+    border-radius: 12px;
+    width: 100%;
+}

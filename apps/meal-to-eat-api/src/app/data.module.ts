@@ -9,15 +9,19 @@ import { User } from '@MealToEat/data';
 import { UserSchema } from './user/user.schema';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
+import { Identity, IdentitySchema } from './auth/identity.schema';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Recipe.name, schema: RecipeSchema },
-      { name: User.name, schema: UserSchema }
+      { name: User.name, schema: UserSchema },
+      { name: Identity.name, schema: IdentitySchema}
     ]),
   ],
-  controllers: [RecipeController, UserController],
-  providers: [RecipeService, UserService],
+  controllers: [RecipeController, UserController, AuthController],
+  providers: [RecipeService, UserService, AuthService],
 })
 export class DataModule {}

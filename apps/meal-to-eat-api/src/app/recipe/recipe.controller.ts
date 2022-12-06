@@ -1,5 +1,5 @@
 import { Recipe } from '@MealToEat/data';
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 import { RecipeService } from './recipe.service';
 
@@ -18,9 +18,17 @@ export class RecipeController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string): Promise<boolean> {
-    console.log('ff testen');
-    
+  async deleteOne(@Param('id') id: string): Promise<any> {
     return this.recipeService.deleteOne(id);
+  }
+
+  @Put(':id')
+  async updateOne(@Param('id') id: string, @Body() newData: Recipe): Promise<any> {
+    return this.recipeService.updateOne(id, newData);
+  }
+
+  @Post()
+  async createOne(@Body() newRecipe: Recipe): Promise<any> {
+    return this.recipeService.createOne(newRecipe);
   }
 }

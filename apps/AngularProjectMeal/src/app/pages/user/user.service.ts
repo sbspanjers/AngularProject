@@ -28,24 +28,28 @@ export class UserService {
 
   getUserById(id: string): Observable<User> {
     console.log('userid('+ id +') aangeroepen')
-    return this.httpClient.get<User>(this.url + "/" + id, 
+    return this.httpClient.get<User>(this.url + `/${id}`, 
     {
       headers: this.headers,
     })
   }
 
-  addUser(newUser: User) {
-    console.log("Add user " + newUser.name);
-  }
-
-  updateUser(updatedUser: User): Observable<string> {
-    console.log("Updating user " + updatedUser.id);
-    return this.httpClient.put<string>(this.url + `/${updatedUser.id}`, updatedUser, {
+  updateUser(updatedUser: User) {
+    console.log("Updating user " + updatedUser.id);  
+    
+    return this.httpClient.put<User>(this.url + `/${updatedUser.id}`, updatedUser, 
+    {
       headers: this.headers,
-    });
+    }
+    );
   }
 
   deleteUser(userToDelete: string) {
     console.log("Delete user("+ userToDelete +")");
+
+    return this.httpClient.delete<string>(this.url + `/${userToDelete}`, 
+    {
+      headers: this.headers,
+    });
   }
 }

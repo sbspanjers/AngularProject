@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-            <label for="username" class="form-label">Naam:</label>
+            <label for="username" class="form-label">Gebruikersnaam:</label>
             <input [(ngModel)]="newUser!.username" type="name" class="form-control" #username="ngModel" name="username" required minlength="1">
             <p *ngIf="!username.valid && username.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een gebruikersnaam in.</p>
 

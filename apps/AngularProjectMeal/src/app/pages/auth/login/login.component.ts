@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.loginUser!).subscribe((token: string) => {
       this.router.navigate(['']);
       console.log('user logged in');
+      console.log(token);
+      
       return token;
     })
     return 'Something went wrong';

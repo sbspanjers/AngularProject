@@ -29,7 +29,9 @@ export class SingleRecipeComponent implements OnInit {
   }
 
   deleteRecipe(): void { 
-    this.recipeService.deleteRecipe(this.recipeId!);
-    this.router.navigate(['recipes'])
+    this.recipeService.deleteRecipe(this.recipeId!).subscribe((output: any) => {
+      console.log("Deleted recipes: " + output.deletedCount);
+    });
+    this.router.navigate(['recipes']);
   }
 }

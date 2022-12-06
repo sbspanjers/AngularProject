@@ -53,4 +53,15 @@ export class AuthService {
             });
         })
     }
+
+    async deleteUser(emailAddress: string): Promise<void> {
+        console.log('identity remove uitgevoerd');
+        console.log(emailAddress);
+        
+        try {
+            await this.identityModel.deleteOne({"emailAddress": emailAddress});
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
