@@ -21,3 +21,13 @@ input.ng-valid[required].ng-touched {
     border-radius: 12px;
     width: 100%;
 }
+
+.deleteBtn {
+    color: red;
+    border-color: red;
+}
+
+.deleteBtn:hover {
+    color: white;
+    border: 1px solid grey;
+}

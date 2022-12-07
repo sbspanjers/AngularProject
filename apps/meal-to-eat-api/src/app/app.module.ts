@@ -1,10 +1,12 @@
 import { RouterModule } from '@nestjs/core';
-import { Module } from '@nestjs/common';
+import { Module, RequestMethod } from '@nestjs/common';
 
 import { MongooseModule } from '@nestjs/mongoose'
 import { DataModule } from './data.module';
 import { MiddlewareConsumer } from '@nestjs/common';
+import { LoggerMiddleware } from '../logger.middleware'
 import { AuthModule } from './auth/auth.module';
+import { TokenMiddleware } from './auth/token.middleware';
 
 require('dotenv');
 
@@ -29,6 +31,7 @@ require('dotenv');
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply().forRoutes('data-api');
+    consumer.apply(TokenMiddleware).forRoutes('data-api');
+    consumer.apply(LoggerMiddleware).forRoutes({path: '*', method: RequestMethod.ALL });
   }
 }

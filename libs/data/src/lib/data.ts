@@ -5,3 +5,4 @@ export * from './auth.interface';
 export * from './id.type';
 export * from './register.model';
 export * from './user.interface';
+export * from './step.model'

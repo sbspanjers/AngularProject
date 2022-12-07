@@ -5,7 +5,8 @@ import { RecipeService } from './recipe/recipe.service';
 
 import { Recipe, RecipeSchema } from './recipe/recipe.schema';
 import { RecipeController } from './recipe/recipe.controller'
-import { User } from '@MealToEat/data';
+import { Step, User } from '@MealToEat/data';
+import { StepSchema } from './step/step.schema'
 import { UserSchema } from './user/user.schema';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
@@ -18,7 +19,8 @@ import { AuthService } from './auth/auth.service';
     MongooseModule.forFeature([
       { name: Recipe.name, schema: RecipeSchema },
       { name: User.name, schema: UserSchema },
-      { name: Identity.name, schema: IdentitySchema}
+      { name: Identity.name, schema: IdentitySchema},
+      { name: Step.name, schema: StepSchema },
     ]),
   ],
   controllers: [RecipeController, UserController, AuthController],

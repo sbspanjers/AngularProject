@@ -24,4 +24,10 @@
             </div>
         </div>
     </div>
+    <div *ngIf="recipe!.steps.length > 0" class="row">
+        <h4>Stappen:</h4>
+        <ol>
+            <li *ngFor="let step of recipe!.steps">{{step.explanation}}</li>
+        </ol>
+    </div>
 </div>

@@ -34,9 +34,18 @@
             <input [(ngModel)]="editRecipe!.typeMeal" type="text" class="form-control" #typeMeal="ngModel" name="typeMeal" [value]="recipe!.typeMeal" required minlength="1">
             <p *ngIf="!typeMeal.valid && typeMeal.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer het type maaltijd in.</p>
 
+            <label for="steps" class="form-label">Stappen:</label>
+            <ol>
+                <li *ngFor="let step of editRecipe!.steps"><input (keyup.enter)="addNewStepFromEnter($event)" (keydown.enter)="$event.preventDefault()" [(ngModel)]="step.explanation" name="{{step.explanation}}" type="text" class="form-control m-1" [value]="step.explanation"></li>
+            </ol>
+            <p>
+                <a (click)="addNewStep()" class="btn btn-outline-secondary me-1"><i class="fa-solid fa-plus"></i> Nieuwe stap</a>
+                <a *ngIf="editRecipe!.steps.length > 0" (click)="deleteLastStep()" class="btn btn-outline-secondary deleteBtn"><i class="fa-solid fa-trash"></i> Verwijder de laatste stap</a>
+            </p>
+
             <button *ngIf="recipeExists" class="btn btn-primary mt-3" type="submit">Verander recept</button>
             <button *ngIf="!recipeExists" [disabled]="!recipeEditForm.valid" class="btn btn-primary mt-3" type="submit">Voeg recept toe</button>
-            <a class="btn btn-secondary ms-2 mt-3" routerLink="/recipes">Cancel</a>
+            <a class="btn btn-secondary ms-2 mt-3" routerLink="/recipes/{{recipe!.id}}">Cancel</a>
         </form>
     </div>
 </div>

@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
 
-import { Recipe } from '@MealToEat/data';
+import { Recipe, } from '@MealToEat/data';
 import { RecipeDocument, Recipe as RecipeModel } from "./recipe.schema";
 
 @Injectable()
@@ -18,7 +18,11 @@ export class RecipeService {
 
     async getOne(recipeId: string): Promise<Recipe> {
         console.log('API: get one recipe (id: '+ recipeId +') aangeroepen!');
-        const recipes = await this.recipeModel.aggregate([{ $match: { id: recipeId }}]);        
+        const recipes = await this.recipeModel.aggregate([
+            { 
+                $match: { id: recipeId }, 
+            },
+        ]);        
         return recipes[0];
     }
 
@@ -40,7 +44,7 @@ export class RecipeService {
         let output;
 
         try {
-            output = await this.recipeModel.updateOne({ "id": id}, { $set: {"name": newData.name, "createDate": newData.createDate, "imgUrl": newData.imgUrl, "personCount": newData.personCount, "cookingTime": newData.cookingTime, "kcal": newData.kcal, "typeMeal": newData.typeMeal}})
+            output = await this.recipeModel.updateOne({ "id": id}, { $set: {"name": newData.name, "createDate": newData.createDate, "imgUrl": newData.imgUrl, "personCount": newData.personCount, "cookingTime": newData.cookingTime, "kcal": newData.kcal, "typeMeal": newData.typeMeal}, "steps": newData.steps})
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +57,7 @@ export class RecipeService {
         
         let output;
         try {
-            output = new this.recipeModel({"name": newRecipe.name, "createDate": newRecipe.createDate, "imgUrl": newRecipe.imgUrl, "personCount": newRecipe.personCount, "cookingTime": newRecipe.cookingTime, "kcal": newRecipe.kcal, "typeMeal": newRecipe.typeMeal});
+            output = new this.recipeModel({"name": newRecipe.name, "createDate": newRecipe.createDate, "imgUrl": newRecipe.imgUrl, "personCount": newRecipe.personCount, "cookingTime": newRecipe.cookingTime, "kcal": newRecipe.kcal, "typeMeal": newRecipe.typeMeal, "steps": newRecipe.steps});
             await output.save();
         } catch (error) {
             console.log(error);

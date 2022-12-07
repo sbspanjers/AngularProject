@@ -1,6 +1,6 @@
 import { User } from '@MealToEat/data';
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { User as UserModel } from './user.schema'
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
+import { InjectToken, Token } from '../auth/token.decorator';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -10,6 +10,12 @@ export class UserController {
   @Get()
   async getAll(): Promise<User[]> {
     return this.userService.getAll();
+  }
+
+  @Get('loggedUser')
+  async getLoggedInUser(@InjectToken() token: Token): Promise<User> {
+    console.log('ik ben hier');
+    return this.userService.getOne(token.id);
   }
 
   @Get(':id')

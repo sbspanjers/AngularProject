@@ -1,5 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Schema as MongooseSchema } from 'mongoose';
+import { StepSchema } from '../step/step.schema';
 import { v4 as uuid } from 'uuid';
+import { Step } from '../step/step.schema';
 
 export type RecipeDocument = Recipe & Document;
 
@@ -28,6 +31,12 @@ export class Recipe {
 
     @Prop({required: true})
     typeMeal: string;
+
+    @Prop({default: [],
+        type: [StepSchema],
+    })
+    steps: Step[];
+
 }
 
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);

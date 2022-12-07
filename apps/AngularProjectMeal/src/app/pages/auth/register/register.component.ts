@@ -20,8 +20,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(): string {
     console.log('register user');
     this.authService.registerUser(this.newUser!).subscribe((id: string) => {
-      this.router.navigate(['']);
-      console.log(id);
+      this.router.navigate(['auth/login']);
       return id;
     });
     return 'Something went wrong';

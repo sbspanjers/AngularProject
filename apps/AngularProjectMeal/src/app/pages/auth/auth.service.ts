@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RegisterModel } from '../../../../../../libs/data/src';
 import { LoginModel } from '../../../../../../libs/data/src/lib/login.model';
 
@@ -8,21 +8,31 @@ import { LoginModel } from '../../../../../../libs/data/src/lib/login.model';
   providedIn: 'root'
 })
 export class AuthService {
-    constructor(private httpClient: HttpClient) {}
+  userLoginStatus = new BehaviorSubject(localStorage.getItem('token') ? true:false);
 
-    private url = 'http://localhost:3333/api/auth-api'
+  constructor(private httpClient: HttpClient) {}
 
-    private headers = new HttpHeaders({
-      'Access-Control-Allow-Origin':'*',
-    });
+  private url = 'http://localhost:3333/api/auth-api'
 
-    registerUser(newUser: RegisterModel): Observable<string> {
-      console.log('register new user');
-      return this.httpClient.post<string>(this.url + '/register', newUser);
+  registerUser(newUser: RegisterModel): Observable<string> {
+    console.log('register new user');
+    return this.httpClient.post<string>(this.url + '/register', newUser);
+  }
+
+  loginUser(loginUser: LoginModel): Observable<string> {
+    console.log('login existing user');
+    return this.httpClient.post<string>(this.url + '/login', loginUser);
+  }
+
+  get loginStatus() {
+    return this.userLoginStatus.getValue();
+  }
+
+  set loginStatus(logout: boolean) {
+    this.userLoginStatus.next(logout);
+    if (!logout) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     }
-
-    loginUser(loginUser: LoginModel): Observable<string> {
-      console.log('login existing user');
-      return this.httpClient.post<string>(this.url + '/login', loginUser);
-    }
+  }
 }
