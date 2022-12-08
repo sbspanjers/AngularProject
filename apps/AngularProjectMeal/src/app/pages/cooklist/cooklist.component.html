@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <h2>Jouw kooklijst</h2>
+    </div>
+    <div *ngIf="recipes.length > 0" class="row row-cols-3 g-3">
+        <div *ngFor="let recipe of recipes" class="col">
+            <div class="singleRecipe" routerLink="/recipes/{{recipe.id}}">
+                <div class="row">
+                    <h4>{{recipe.name}}</h4>
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+                        <p class="m-0"><i class="fa-solid fa-clock"></i> {{recipe.cookingTime}} min</p>
+                        <p class="m-0"><i class="fa-solid fa-fire-flame-curved"></i> {{recipe.kcal}} kcal</p>
+                    </div>
+                    <div class="col">
+                        <p class="m-0"><i class="fa-solid fa-user"></i> {{recipe.personCount}}</p>
+                        <p class="m-0"><i class="fa-solid fa-utensils"></i> {{recipe.typeMeal}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="imgPlace">
+                        <img class="img" src="{{recipe.imgUrl}}" alt="{{recipe.name}}-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="recipes.length <= 0" class="row">
+        <p>Je hebt nog geen favorieten recepten.</p>
+        <a class="btn btn-outline-success" routerLink="/recipes">Ga op zoek!</a>
+    </div>
+</div>

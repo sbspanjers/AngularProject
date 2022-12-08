@@ -17,7 +17,13 @@ export class UserService {
 
   async getOne(userId: string): Promise<User> {
     console.log('API: get one user (id: '+ userId + ') aangeroepen!');
-    const users = await this.userModel.aggregate([{ $match: { id: userId }}]);        
+    const users = await this.userModel.aggregate([
+      { 
+        $match: { id: userId },
+      }
+    ]);
+    console.log(users);
+    
     return users[0];
   }
 

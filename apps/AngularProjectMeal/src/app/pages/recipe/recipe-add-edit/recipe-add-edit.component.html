@@ -34,6 +34,21 @@
             <input [(ngModel)]="editRecipe!.typeMeal" type="text" class="form-control" #typeMeal="ngModel" name="typeMeal" [value]="recipe!.typeMeal" required minlength="1">
             <p *ngIf="!typeMeal.valid && typeMeal.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Voer het type maaltijd in.</p>
 
+            <label for="ingredients">Ingrediënten:</label>
+            <ol>
+                <li *ngFor="let ingredient of editRecipe!.ingredients">
+                    <div class="ingInputs">
+                            <input (keydown.enter)="$event.preventDefault()" [(ngModel)]="ingredient.name" name="{{ingredient.name}}" type="text" class="form-control ingNameInput" [value]="ingredient.name">
+                            <input (keydown.enter)="$event.preventDefault()" [(ngModel)]="ingredient.amount" name="{{ingredient.amount}}" type="number" class="form-control ingAmountInput" [value]="ingredient.amount" min="1">
+                            <input (keyup.enter)="addNewIngredientFromEnter($event)" (keydown.enter)="$event.preventDefault()" [(ngModel)]="ingredient.weightMeasure" name="{{ingredient.weightMeasure}}" type="text" class="form-control ingWeightMeasureInput" [value]="ingredient.weightMeasure">
+                    </div>
+                </li>
+            </ol>
+            <p>
+                <a (click)="addNewIngredient()" class="btn btn-outline-secondary me-1"><i class="fa-solid fa-plus"></i> Nieuw ingrediënt</a>
+                <a *ngIf="editRecipe!.ingredients.length > 0" (click)="deleteLastIngredient()" class="btn btn-outline-secondary deleteBtn"><i class="fa-solid fa-trash"></i> Verwijder het laatste ingrediënt</a>
+            </p>
+                
             <label for="steps" class="form-label">Stappen:</label>
             <ol>
                 <li *ngFor="let step of editRecipe!.steps"><input (keyup.enter)="addNewStepFromEnter($event)" (keydown.enter)="$event.preventDefault()" [(ngModel)]="step.explanation" name="{{step.explanation}}" type="text" class="form-control m-1" [value]="step.explanation"></li>

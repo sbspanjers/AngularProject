@@ -5,11 +5,10 @@
     </div>
     <div class="row">
         <form #userEditForm="ngForm" (ngSubmit)="onSubmit()">
-        <label for="name" class="form-label">Naam:</label>
-        <input [(ngModel)]="editUser.name" type="name" class="form-control" #name="ngModel" name="name" [value]="user!.name" required minlength="1">
-        <p *ngIf="!name.valid && name.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul uw naam in.</p>
+        <label for="emailAddress" class="form-label">Email:</label>
+        <input [(ngModel)]="editUser.emailAddress" type="email" class="form-control" #emailAddress="ngModel" name="emailAddress" [value]="user!.emailAddress" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$">
+        <p *ngIf="!emailAddress.valid && emailAddress.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een valide emailadres in.</p>
         <button *ngIf="userExists" class="btn btn-primary mt-3" type="submit">Verander gebruiker</button>
-        <button *ngIf="!userExists" [disabled]="!userEditForm.valid" class="btn btn-primary mt-3" type="submit">Voeg gebruiker toe</button>
         <a class="btn btn-secondary ms-2 mt-3" routerLink="/users">Cancel</a>
     </form>
     </div>

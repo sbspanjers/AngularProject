@@ -17,6 +17,7 @@ import { RecipeAddEditComponent } from './pages/recipe/recipe-add-edit/recipe-ad
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { CooklistComponent } from './pages/cooklist/cooklist.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
     RecipeAddEditComponent,
     RegisterComponent,
     LoginComponent,
+    CooklistComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

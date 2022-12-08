@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Step } from '../../../../../../../libs/data/src';
+import { Ingredient, Step } from '../../../../../../../libs/data/src';
 import { Recipe } from '../../../../../../../libs/data/src/lib/recipe.model'
 import { RecipeService } from '../recipe.service';
 
@@ -33,6 +33,7 @@ export class RecipeAddEditComponent implements OnInit {
           this.editRecipe.kcal = this.recipe!.kcal;
           this.editRecipe.typeMeal = this.recipe!.typeMeal;
           this.editRecipe.steps = this.recipe!.steps || [];
+          this.editRecipe.ingredients = this.recipe!.ingredients || [];
           this.recipeExists = true;
         });
       } else {
@@ -44,8 +45,6 @@ export class RecipeAddEditComponent implements OnInit {
   onSubmit(): void {
     if(this.recipeExists) {
       console.log('submit edit recipe');
-      console.log(this.editRecipe!.steps);
-      
       this.recipeService.editRecipe(this.editRecipe!).subscribe((output: any) => {
         this.router.navigate(['recipes/' + this.recipeId]);
       });
@@ -71,5 +70,20 @@ export class RecipeAddEditComponent implements OnInit {
 
   deleteLastStep() {
     this.editRecipe.steps.pop();
+  }
+
+  addNewIngredientFromEnter(event) {
+    this.addNewIngredient();
+    setTimeout(() => {
+      event.target.parentElement.parentNode.parentNode.lastElementChild.firstChild.firstChild.focus().selectAll();
+    }, 0);
+  }
+
+  addNewIngredient() {
+    this.editRecipe.ingredients.push(new Ingredient('Nieuw ingrediënt', 0, ' '));
+  }
+
+  deleteLastIngredient() {
+    this.editRecipe.ingredients.pop();
   }
 }

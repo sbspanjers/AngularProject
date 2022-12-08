@@ -1,0 +1,25 @@
+.singleRecipe {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.singleRecipe:hover {
+    transform: translateY(-5px);
+    box-shadow: green 5px 10px;
+}
+
+.imgPlace {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    overflow: hidden;
+}
+
+.img {
+    object-fit: cover;
+    border-radius: 12px;
+    width: 100%;
+}

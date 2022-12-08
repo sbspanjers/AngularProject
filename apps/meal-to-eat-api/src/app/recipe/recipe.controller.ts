@@ -1,4 +1,4 @@
-import { Recipe } from '@MealToEat/data';
+import { Recipe, User } from '@MealToEat/data';
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 import { RecipeService } from './recipe.service';
@@ -15,6 +15,25 @@ export class RecipeController {
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<Recipe> {
     return this.recipeService.getOne(id)
+  }
+
+  @Get('/fav/:id')
+  async getAllFav(@Param('id') id: string): Promise<User> {
+    return this.recipeService.getAllFav(id);
+  }
+
+  @Put('/fav')
+  async makeRecipeFav(@Body() body: any): Promise<Recipe> {
+    console.log(body);
+    
+    return this.recipeService.makeRecipeFav(body.user, body.recipeToFav);
+  }
+
+  @Put('/noFav')
+  async makeRecipeNOTFav(@Body() body: any): Promise<Recipe> {
+    console.log(body);
+    
+    return this.recipeService.makeRecipeNOTFav(body.user, body.recipeToNotFav);
   }
 
   @Delete(':id')

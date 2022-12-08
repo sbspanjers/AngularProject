@@ -32,6 +32,17 @@
     color: black;
 }
 
+.favBtn {
+    background-color:gold;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.favBtn:hover {
+    border: 1px solid black;
+}
+
 .imgPlace {
     width: 350px;
     border-radius: 12px;

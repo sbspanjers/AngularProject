@@ -9,6 +9,7 @@ import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.c
 import { UserComponent } from './pages/user/user.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { CooklistComponent } from './pages/cooklist/cooklist.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'about', component: AboutPageComponent },
   { path: 'auth/register', component: RegisterComponent},
   { path: 'auth/login', component: LoginComponent},
+  { path: 'cooklist', component: CooklistComponent}
 ];
 
 @NgModule({

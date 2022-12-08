@@ -1,33 +1,50 @@
 <div class="container">
-    <div class="row">
-        <div class="col-2">
-            <a class="back-btn" routerLink="/recipes">&lt; Terug</a>
+    <div class="row mb-2">
+        <div class="col-8">
+            <h3>{{recipe!.name}}</h3>
         </div>
-        <div class="col-2 ms-auto">
+        <div class="col-4 ms-auto">
+            <a (click)="addRemoveCooklist()" *ngIf="isInCooklist" class="btn favBtn me-2"><i class="fa-solid fa-star"></i> Verwijder uit kooklijst </a>
+            <a (click)="addRemoveCooklist()" *ngIf="!isInCooklist" class="btn favBtn me-2"><i class="fa-regular fa-star"></i> Voeg toe aan kooklijst </a>
             <a routerLink="edit" class="btn editBtn"><i class="fa-solid fa-pencil"></i> Edit</a>
             <a (click)="deleteRecipe()" class="btn deleteBtn"><i class="fa-solid fa-trash"></i> Delete</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
-            <h3>{{recipe!.name}}</h3>
-            <p>
-                <i class="fa-solid fa-clock"></i> {{recipe!.cookingTime}} min. bereiden<br>
-                <i class="fa-solid fa-fire-flame-curved"></i> {{recipe!.kcal}} kcal<br>
-                <i class="fa-solid fa-user"></i> {{recipe!.personCount}}<br>
-                <i class="fa-solid fa-utensils"></i> {{recipe!.typeMeal}}
-            </p>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-5">
+                    <p>
+                        <i class="fa-solid fa-clock"></i> {{recipe!.cookingTime}} min. bereiden<br>
+                        <i class="fa-solid fa-fire-flame-curved"></i> {{recipe!.kcal}} kcal<br>
+                        <i class="fa-solid fa-user"></i> {{recipe!.personCount}}<br>
+                        <i class="fa-solid fa-utensils"></i> {{recipe!.typeMeal}}
+                    </p>
+                </div>
+            </div>
+
+            <div *ngIf="recipe!.ingredients.length > 0" class="row">
+                <h4>Ingrediënten:</h4>
+                <ul>
+                    <li *ngFor="let ingredient of recipe!.ingredients">{{ingredient.name}}: {{ingredient.amount}} {{ingredient.weightMeasure}}</li>
+                </ul>
+            </div>
+    
+            <div *ngIf="recipe!.steps.length > 0" class="row">
+                <h4>Stappen:</h4>
+                <ol>
+                    <li *ngFor="let step of recipe!.steps">{{step.explanation}}</li>
+                </ol>
+            </div>
         </div>
-        <div class="col-7">
+
+        <div class="col-6">
             <div class="imgPlace">
                 <img class="w-100" src="{{recipe!.imgUrl}}" alt="{{recipe!.name}}-img">
             </div>
         </div>
+
     </div>
-    <div *ngIf="recipe!.steps.length > 0" class="row">
-        <h4>Stappen:</h4>
-        <ol>
-            <li *ngFor="let step of recipe!.steps">{{step.explanation}}</li>
-        </ol>
-    </div>
+
+    
 </div>

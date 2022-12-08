@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(user) || '');
       });
       this.authService.loginStatus = true;
-      this.router.navigate(['']);
+      this.router.navigate(['/recipes']);
       return token;
     })
     return 'Something went wrong';

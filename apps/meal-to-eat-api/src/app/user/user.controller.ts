@@ -14,7 +14,6 @@ export class UserController {
 
   @Get('loggedUser')
   async getLoggedInUser(@InjectToken() token: Token): Promise<User> {
-    console.log('ik ben hier');
     return this.userService.getOne(token.id);
   }
 

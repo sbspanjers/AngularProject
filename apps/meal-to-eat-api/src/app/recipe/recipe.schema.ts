@@ -3,6 +3,8 @@ import { Schema as MongooseSchema } from 'mongoose';
 import { StepSchema } from '../step/step.schema';
 import { v4 as uuid } from 'uuid';
 import { Step } from '../step/step.schema';
+import { IngredientSchema } from '../ingredient/ingredient.schema';
+import { Ingredient } from '@MealToEat/data';
 
 export type RecipeDocument = Recipe & Document;
 
@@ -36,6 +38,11 @@ export class Recipe {
         type: [StepSchema],
     })
     steps: Step[];
+
+    @Prop({default: [],
+        type: [IngredientSchema],
+    })
+    ingredients: Ingredient[];
 
 }
 
