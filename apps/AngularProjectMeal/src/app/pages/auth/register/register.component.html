@@ -16,6 +16,8 @@
             <input [(ngModel)]="newUser!.password" type="password" class="form-control" #password="ngModel" name="password" required minlength="6">
             <p *ngIf="!password.valid && password.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul een wachtwoord in met minimaal 6 karakters.</p>
 
+            <p *ngIf="userCreated" class="mt-3">Gebuiker aangemaakt! <a class="btn btn-outline-secondary" routerLink="/auth/login">Login</a></p>
+
             <button [disabled]="!registerForm.valid" class="btn btn-primary mt-3" type="submit">Registreer</button>
             <p>Al een account? <a class="otherLink ms-2 mt-3" routerLink="/auth/login">Login</a></p>
         </form>

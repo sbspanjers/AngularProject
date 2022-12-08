@@ -10,7 +10,9 @@
 
             <label for="password" class="form-label">Wachtwoord:</label>
             <input [(ngModel)]="loginUser!.password" type="password" class="form-control" #password="ngModel" name="password" required minlength="6">
-            <p *ngIf="!password.valid && password.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Vul uw wachtwoord van minimaal 6 karakters in.</p>
+            <p *ngIf="!password.valid && password.touched" style="color:red"><i class="fa-solid fa-circle-xmark"></i> Denk aan het minimum aantal karakters.</p>
+
+            <p *ngIf="wrongLogin" class="mt-2" style="color: red">Inlog gegevens onjuist. Probeer opnieuw.</p>
 
             <button [disabled]="!loginForm.valid" class="btn btn-primary mt-3" type="submit">Login</button>
             <p>Nog geen account? <a class="otherLink ms-2 mt-3" routerLink="/auth/register">Registreren</a></p>

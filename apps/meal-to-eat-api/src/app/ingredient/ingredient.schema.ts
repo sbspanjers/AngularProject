@@ -5,13 +5,13 @@ export type IngredientDocument = Ingredient & Document;
 @Schema()
 export class Ingredient {
 
-    @Prop({required: true})
+    @Prop({default: ' ', required: true})
     name: string;
 
-    @Prop({required: true})
+    @Prop({default: 0, required: true})
     amount: number;
 
-    @Prop({required: true})
+    @Prop({default: ' ', required: true})
     weightMeasure: string;
 }
 

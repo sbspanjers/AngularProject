@@ -11,7 +11,7 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeAddEditComponent implements OnInit {
   recipeId: string | null = null;
-  recipe: Recipe | null = null;
+  recipe: Recipe = new Recipe;
   editRecipe = new Recipe;
   recipeExists = false;
   

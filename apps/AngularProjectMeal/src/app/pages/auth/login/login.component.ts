@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs';
 import { User } from '../../../../../../../libs/data/src';
 import { LoginModel } from '../../../../../../../libs/data/src/lib/login.model'
 import { UserService } from '../../user/user.service';
@@ -12,6 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   loginUser: LoginModel | null = null;
+  wrongLogin: boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService) {}
 
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
     this.loginUser = new LoginModel();
   }
 
-  onSubmit(): string {
+  onSubmit(): void {
     console.log('login user');
     this.authService.loginUser(this.loginUser!).subscribe((token) => {
       console.log('user logged in');
@@ -30,8 +32,9 @@ export class LoginComponent implements OnInit {
       });
       this.authService.loginStatus = true;
       this.router.navigate(['/recipes']);
-      return token;
     })
-    return 'Something went wrong';
+    setTimeout(() => {
+      this.wrongLogin = true;
+    }, 250);
   }
 }

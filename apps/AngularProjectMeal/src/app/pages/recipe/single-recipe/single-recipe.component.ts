@@ -12,7 +12,7 @@ import { RecipeService } from '../recipe.service';
 })
 export class SingleRecipeComponent implements OnInit {
   recipeId: string | null = null;
-  recipe: Recipe | null = null;
+  recipe: Recipe = new Recipe;
   isInCooklist = false;
   usersFavs: Recipe[] = []; 
 

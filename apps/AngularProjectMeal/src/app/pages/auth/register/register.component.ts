@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   newUser: RegisterModel | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
+  userCreated: boolean = false;
 
   ngOnInit(): void {
     this.newUser = new RegisterModel();
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(): string {
     console.log('register user');
     this.authService.registerUser(this.newUser!).subscribe((id: string) => {
-      this.router.navigate(['auth/login']);
+      console.log('gebruiker aangemaakt');
+      this.userCreated = true;
       return id;
     });
     return 'Something went wrong';
