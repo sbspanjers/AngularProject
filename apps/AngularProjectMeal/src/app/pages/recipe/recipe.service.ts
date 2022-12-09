@@ -11,7 +11,7 @@ export class RecipeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'http://localhost:3333/api/data-api/recipe';
+  private url = 'mealtoeat-api.up.railway.app/api/data-api/recipe';
 
   getToken(): string {
     return JSON.parse(localStorage.getItem('token') || '').token;

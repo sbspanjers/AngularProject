@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { timeout } from 'rxjs';
 import { User } from '../../../../../../../libs/data/src';
 import { LoginModel } from '../../../../../../../libs/data/src/lib/login.model'
 import { UserService } from '../../user/user.service';
