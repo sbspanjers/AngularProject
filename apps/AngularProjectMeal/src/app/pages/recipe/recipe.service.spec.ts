@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { url } from 'inspector';
 
 import { RecipeService } from './recipe.service';
 
@@ -12,5 +13,6 @@ describe('RecipeService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    expect(url).toBe('https://mealtoeat-api.up.railway.app/api/data-api/recipe');
   });
 });

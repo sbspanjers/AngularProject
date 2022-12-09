@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { url } from 'inspector';
 
 import { UserService } from './user.service';
 
@@ -12,5 +13,6 @@ describe('UserService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    expect(url).toBe('https://mealtoeat-api.up.railway.app/api/data-api/user')
   });
 });

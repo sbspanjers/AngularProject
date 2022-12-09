@@ -34,6 +34,6 @@ export class LoginComponent implements OnInit {
     })
     setTimeout(() => {
       this.wrongLogin = true;
-    }, 250);
+    }, 500);
   }
 }

@@ -6,6 +6,11 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
+  const userLogin = {
+    username: 'thomas',
+    password: '123456'
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
@@ -18,5 +23,6 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.wrongLogin).toBe(false);
   });
 });
