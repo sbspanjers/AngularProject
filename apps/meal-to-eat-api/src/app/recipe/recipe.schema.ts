@@ -4,7 +4,7 @@ import { StepSchema } from '../step/step.schema';
 import { v4 as uuid } from 'uuid';
 import { Step } from '../step/step.schema';
 import { IngredientSchema } from '../ingredient/ingredient.schema';
-import { Ingredient } from '@MealToEat/data';
+import { Ingredient, User } from '@MealToEat/data';
 
 export type RecipeDocument = Recipe & Document;
 
@@ -43,6 +43,12 @@ export class Recipe {
         type: [IngredientSchema],
     })
     ingredients: Ingredient[];
+
+    @Prop({default: new User,
+        type: MongooseSchema.Types.ObjectId,
+        ref: 'User'
+    })
+    creator: User;
 
 }
 

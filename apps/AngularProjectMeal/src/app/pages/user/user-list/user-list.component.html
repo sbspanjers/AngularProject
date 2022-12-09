@@ -13,8 +13,8 @@
         <th>{{ user.id }}</th>
         <td>{{ user.name }}</td>
         <td>{{ user.emailAddress }}</td>
-        <td><a routerLink="{{ user.id }}/edit" class="editBtn"><i class="fa-solid fa-pencil"></i></a></td>
-        <td><a (click)="deleteUser(user.id)" class="deleteBtn"><i class="fa-solid fa-trash"></i></a></td>
+        <td><a *ngIf="user.id == isTheUserId" routerLink="{{ user.id }}/edit" class="editBtn"><i class="fa-solid fa-pencil"></i></a></td>
+        <td><a *ngIf="user.id == isTheUserId" (click)="deleteUser(user.id)" class="deleteBtn"><i class="fa-solid fa-trash"></i></a></td>
     </tr>
   </tbody>
 </table>

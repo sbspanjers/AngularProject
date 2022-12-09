@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Ingredient, Step } from '../../../../../../../libs/data/src';
+import { throwIfEmpty } from 'rxjs';
+import { Ingredient, Step, User } from '../../../../../../../libs/data/src';
 import { Recipe } from '../../../../../../../libs/data/src/lib/recipe.model'
 import { RecipeService } from '../recipe.service';
 
@@ -23,6 +24,8 @@ export class RecipeAddEditComponent implements OnInit {
       this.recipeId = params.get('id');
       if (this.recipeId) {
         this.recipeService.getRecipeById(this.recipeId).pipe().subscribe((recipeData: Recipe) => {
+          
+          // data from api in local variable
           this.recipe = recipeData;
           this.editRecipe.id = this.recipe!.id;
           this.editRecipe.name = this.recipe!.name;
@@ -35,9 +38,15 @@ export class RecipeAddEditComponent implements OnInit {
           this.editRecipe.steps = this.recipe!.steps || [];
           this.editRecipe.ingredients = this.recipe!.ingredients || [];
           this.recipeExists = true;
+
+          // get the favorites from the creator, ortherwise crash on update
+          this.recipeService.getFavRecipes().subscribe((creator: User) => {
+            this.editRecipe.creator = creator;
+          });
         });
       } else {
         this.recipe = new Recipe();
+        this.editRecipe.creator = JSON.parse(localStorage.getItem('user')|| '');
       }
     })
   }

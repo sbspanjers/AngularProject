@@ -23,6 +23,15 @@ export class RecipeService {
             { 
                 $match: { id: recipeId }, 
             },
+            {
+                $lookup:
+                {
+                    from: 'users',
+                    localField: 'creator',
+                    foreignField: '_id',
+                    as: 'creator',
+                },
+            },
         ]);        
         return recipes[0];
     }
@@ -95,7 +104,7 @@ export class RecipeService {
         let output;
 
         try {
-            output = await this.recipeModel.updateOne({ "id": id}, { $set: {"name": newData.name, "createDate": newData.createDate, "imgUrl": newData.imgUrl, "personCount": newData.personCount, "cookingTime": newData.cookingTime, "kcal": newData.kcal, "typeMeal": newData.typeMeal, "steps": newData.steps, "ingredients": newData.ingredients }})
+            output = await this.recipeModel.updateOne({ "id": id}, { $set: {"name": newData.name, "createDate": newData.createDate, "imgUrl": newData.imgUrl, "personCount": newData.personCount, "cookingTime": newData.cookingTime, "kcal": newData.kcal, "typeMeal": newData.typeMeal, "steps": newData.steps, "ingredients": newData.ingredients, "creator": newData.creator }})
         } catch (error) {
             console.log(error);
         }
@@ -108,7 +117,7 @@ export class RecipeService {
         
         let output;
         try {
-            output = new this.recipeModel({"name": newRecipe.name, "createDate": newRecipe.createDate, "imgUrl": newRecipe.imgUrl, "personCount": newRecipe.personCount, "cookingTime": newRecipe.cookingTime, "kcal": newRecipe.kcal, "typeMeal": newRecipe.typeMeal, "steps": newRecipe.steps, "ingredients": newRecipe.ingredients});
+            output = new this.recipeModel({"name": newRecipe.name, "createDate": newRecipe.createDate, "imgUrl": newRecipe.imgUrl, "personCount": newRecipe.personCount, "cookingTime": newRecipe.cookingTime, "kcal": newRecipe.kcal, "typeMeal": newRecipe.typeMeal, "steps": newRecipe.steps, "ingredients": newRecipe.ingredients, "creator": newRecipe.creator});
             await output.save();
         } catch (error) {
             console.log(error);

@@ -10,12 +10,14 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  isTheUserId: string = '';
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users: User[]) => {
       this.users = users;
+      this.isTheUserId = JSON.parse(localStorage.getItem('user')||'').id;
     });
   }
 

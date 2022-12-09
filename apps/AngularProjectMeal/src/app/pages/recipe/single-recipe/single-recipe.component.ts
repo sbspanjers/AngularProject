@@ -15,6 +15,7 @@ export class SingleRecipeComponent implements OnInit {
   recipe: Recipe = new Recipe;
   isInCooklist = false;
   usersFavs: Recipe[] = []; 
+  isCreator = false;
 
   constructor(private recipeService: RecipeService, private route: ActivatedRoute
     , private router: Router, private location: Location) {
@@ -26,6 +27,10 @@ export class SingleRecipeComponent implements OnInit {
       if (this.recipeId) {
         this.recipeService.getRecipeById(this.recipeId).subscribe((recipeData: Recipe) => {
           this.recipe = recipeData;
+        
+          if (JSON.parse(localStorage.getItem('user') || '').id == this.recipe.creator[0].id) {
+            this.isCreator = true;
+          }
         });
         this.recipeService.getFavRecipes().subscribe((user: User) => {
           this.usersFavs = user.favRecipes;
@@ -35,7 +40,8 @@ export class SingleRecipeComponent implements OnInit {
               this.isInCooklist = true;
             }
           });
-        })
+        });
+        
       } else {
         this.recipe = new Recipe();
       }

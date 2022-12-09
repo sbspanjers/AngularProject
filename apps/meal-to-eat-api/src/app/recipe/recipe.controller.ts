@@ -42,7 +42,7 @@ export class RecipeController {
   }
 
   @Put(':id')
-  async updateOne(@Param('id') id: string, @Body() newData: Recipe): Promise<any> {
+  async updateOne(@Param('id') id: string, @Body() newData: Recipe): Promise<any> {   
     return this.recipeService.updateOne(id, newData);
   }
 

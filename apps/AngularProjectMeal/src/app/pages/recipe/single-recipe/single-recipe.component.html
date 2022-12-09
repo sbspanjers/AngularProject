@@ -3,11 +3,13 @@
         <div class="col-8">
             <h3>{{recipe!.name}}</h3>
         </div>
-        <div class="col-4 ms-auto">
+        <div class="col-4 ms-auto d-flex">
             <a (click)="addRemoveCooklist()" *ngIf="isInCooklist" class="btn favBtn me-2"><i class="fa-solid fa-star"></i> Verwijder uit kooklijst </a>
             <a (click)="addRemoveCooklist()" *ngIf="!isInCooklist" class="btn favBtn me-2"><i class="fa-regular fa-star"></i> Voeg toe aan kooklijst </a>
-            <a routerLink="edit" class="btn editBtn"><i class="fa-solid fa-pencil"></i> Edit</a>
-            <a (click)="deleteRecipe()" class="btn deleteBtn"><i class="fa-solid fa-trash"></i> Delete</a>
+            <div *ngIf="isCreator">
+                <a routerLink="edit" class="btn editBtn"><i class="fa-solid fa-pencil"></i> Edit</a>
+                <a (click)="deleteRecipe()" class="btn deleteBtn"><i class="fa-solid fa-trash"></i> Delete</a>
+            </div>
         </div>
     </div>
     <div class="row">
