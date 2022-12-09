@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'mealtoeat-api.up.railway.app/api/data-api/user';
+  private url = 'https://mealtoeat-api.up.railway.app/api/data-api/user';
 
   getUsers(): Observable<User[]> {
     console.log('alle users aangeroepen')

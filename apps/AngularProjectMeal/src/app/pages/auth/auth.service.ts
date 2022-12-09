@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  private url = 'mealtoeat-api.up.railway.app/api/auth-api'
+  private url = 'https://mealtoeat-api.up.railway.app/api/auth-api'
 
   registerUser(newUser: RegisterModel): Observable<string> {
     console.log('register new user');
