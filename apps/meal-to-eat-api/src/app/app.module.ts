@@ -7,12 +7,20 @@ import { MiddlewareConsumer } from '@nestjs/common';
 import { LoggerMiddleware } from '../logger.middleware'
 import { AuthModule } from './auth/auth.module';
 import { TokenMiddleware } from './auth/token.middleware';
+import { Neo4jModule } from './neo4j/neo4j.module';
 
 require('dotenv');
 
 @Module({
   imports: [
     MongooseModule.forRoot(`mongodb+srv://${process.env['MONGO_USR']}:${process.env['MONGO_PWD']}@cluster0.d1fcddn.mongodb.net/MealToEat`),
+    Neo4jModule.forRoot({
+      scheme: 'neo4j',
+      host: process.env['NEO4J_HOST'] || '',
+      username: process.env['NEO4J_USR']  || '',
+      password: process.env['NEO4J_PWD']  || '',
+      database: process.env['NEO4J_DB']  || '',
+    }),
     AuthModule,
     DataModule,
     RouterModule.register([

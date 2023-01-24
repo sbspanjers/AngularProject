@@ -41,8 +41,7 @@ export class UserService {
 
   async deleteOne(userToDelete: User): Promise<string> {
     console.log(`API: delete one user (id: ${userToDelete.id}) aangeroepen!`);
-    console.log();
-    
+
     let output;
 
     try {

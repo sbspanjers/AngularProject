@@ -22,6 +22,11 @@ export class RecipeController {
     return this.recipeService.getAllFav(id);
   }
 
+  @Get('/ingredients/search')
+  async getRecipesByIngredients(@Body() body: string[]): Promise<any> {
+    return this.recipeService.getRecipesByIngredients(body);
+  }
+
   @Put('/fav')
   async makeRecipeFav(@Body() body: any): Promise<Recipe> {
     console.log(body);

@@ -6,14 +6,15 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Recipe, User } from '@MealToEat/data';
 import { RecipeDocument, Recipe as RecipeModel } from "./recipe.schema";
 import { User as UserModel, UserDocument } from '../user/user.schema'
+import { Neo4jService } from "../neo4j/neo4j.service";
 
 @Injectable()
 export class RecipeService {
-    constructor(@InjectModel(RecipeModel.name) private recipeModel: Model<RecipeDocument>, @InjectModel(UserModel.name) private userModel: Model<UserDocument>) {}
+    constructor(@InjectModel(RecipeModel.name) private recipeModel: Model<RecipeDocument>, @InjectModel(UserModel.name) private userModel: Model<UserDocument>
+    ,private neo4jService: Neo4jService) {}
 
     async getAll(): Promise<Recipe[]> {
         console.log("API: get all recipes aangeroepen!");
-        
         return this.recipeModel.find();
     }
 
@@ -123,5 +124,22 @@ export class RecipeService {
             console.log(error);
         }
         return output;
+    }
+
+    async getRecipesByIngredients(ingredients: string[]): Promise<any[]> {
+        console.log('API: get recipes by ingredients');
+        let ingredientsStringList = "";
+
+        ingredients.forEach(i => {
+            if (ingredients.length - 1 == ingredients.indexOf(i)) {
+                ingredientsStringList += "'" + i + "'";
+            } else {
+                ingredientsStringList += "'" + i + "', ";
+            }
+        });
+        
+        const recipes = await this.neo4jService.singleRead(
+            "WITH [ " + ingredientsStringList +  " ] as ingredientsList MATCH (recipe:Recipe)-[:HasIngredient]->(ingredient:Ingredient) WHERE ingredient.name IN ingredientsList WITH recipe, count(recipe) AS i WHERE i >= 2 RETURN DISTINCT recipe LIMIT 10");
+        return recipes.records;
     }
 }
