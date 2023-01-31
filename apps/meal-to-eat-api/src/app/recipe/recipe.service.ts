@@ -128,15 +128,21 @@ export class RecipeService {
 
     async getRecipesByIngredients(ingredients: string[]): Promise<any[]> {
         console.log('API: get recipes by ingredients');
+        console.log(ingredients);
+        
         let ingredientsStringList = "";
 
         ingredients.forEach(i => {
+            console.log(i);
+            
             if (ingredients.length - 1 == ingredients.indexOf(i)) {
                 ingredientsStringList += "'" + i + "'";
             } else {
                 ingredientsStringList += "'" + i + "', ";
             }
         });
+        console.log(ingredientsStringList);
+        
         
         const recipes = await this.neo4jService.singleRead(
             "WITH [ " + ingredientsStringList +  " ] as ingredientsList MATCH (recipe:Recipe)-[:HasIngredient]->(ingredient:Ingredient) WHERE ingredient.name IN ingredientsList WITH recipe, count(recipe) AS i WHERE i >= 2 RETURN DISTINCT recipe LIMIT 10");
