@@ -23,8 +23,8 @@ export class RecipeController {
   }
 
   @Get('/ingredients/search')
-  async getRecipesByIngredients(@Body() body: any): Promise<any> {
-    return this.recipeService.getRecipesByIngredients(body.ingredients);
+  async getRecipesByIngredients(@Body() body: {ingredients: string[]}): Promise<any> {
+    return this.recipeService.getRecipesByIngredients(body);
   }
 
   @Put('/fav')
