@@ -129,9 +129,10 @@ export class RecipeService {
     async getRecipesByIngredients(body: {ingredients: string[]}): Promise<any[]> {
         console.log('API: get recipes by ingredients');
         console.log(body);
-        console.log(body.ingredients);
         console.log(typeof(body.ingredients));
         const ingredients = body.ingredients;
+        console.log(ingredients);
+        
         
         let ingredientsStringList = "";
 
