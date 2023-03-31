@@ -27,6 +27,6 @@ import { Neo4jService } from './neo4j/neo4j.service';
     ]),
   ],
   controllers: [RecipeController, UserController, AuthController],
-  providers: [RecipeService, UserService, AuthService, Neo4jService],
+  providers: [RecipeService, UserService, AuthService],
 })
 export class DataModule {}
