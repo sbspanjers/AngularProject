@@ -22,11 +22,6 @@ export class RecipeController {
     return this.recipeService.getAllFav(id);
   }
 
-  @Post('/ingredients/search')
-  async getRecipesByIngredients(@Body() body: {ingredients: string[]}): Promise<any> {
-    return this.recipeService.getRecipesByIngredients(body);
-  }
-
   @Put('/fav')
   async makeRecipeFav(@Body() body: any): Promise<Recipe> {
     console.log(body);
@@ -54,5 +49,10 @@ export class RecipeController {
   @Post()
   async createOne(@Body() newRecipe: Recipe): Promise<any> {
     return this.recipeService.createOne(newRecipe);
+  }
+
+  @Post('/ingredients/search')
+  async getRecipesByIngredients(@Body() body: {ingredients: string[]}): Promise<any> {
+    return this.recipeService.getRecipesByIngredients(body);
   }
 }
