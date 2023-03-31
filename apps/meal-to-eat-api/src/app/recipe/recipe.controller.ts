@@ -51,7 +51,7 @@ export class RecipeController {
     return this.recipeService.createOne(newRecipe);
   }
 
-  @Post('/ingredients/search')
+  @Get('/ingredients/search')
   async getRecipesByIngredients(@Body() body: {ingredients: string[]}): Promise<any> {
     return this.recipeService.getRecipesByIngredients(body);
   }
