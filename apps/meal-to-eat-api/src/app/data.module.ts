@@ -14,6 +14,7 @@ import { Identity, IdentitySchema } from './auth/identity.schema';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { IngredientSchema } from './ingredient/ingredient.schema';
+import { Neo4jService } from './neo4j/neo4j.service';
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { IngredientSchema } from './ingredient/ingredient.schema';
     ]),
   ],
   controllers: [RecipeController, UserController, AuthController],
-  providers: [RecipeService, UserService, AuthService],
+  providers: [RecipeService, UserService, AuthService, Neo4jService],
 })
 export class DataModule {}
