@@ -22,9 +22,9 @@ export class RecipeController {
     return this.recipeService.getAllFav(id);
   }
 
-  @Get('/ingredients/search')
+  @Post('/ingredients/search')
   async getRecipesByIngredients(@Body() body: {ingredients: string[]}): Promise<any> {
-    return await this.recipeService.getRecipesByIngredients(body);
+    return this.recipeService.getRecipesByIngredients(body);
   }
 
   @Put('/fav')
