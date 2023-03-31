@@ -39,7 +39,7 @@ require('dotenv');
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    //consumer.apply(TokenMiddleware).forRoutes('data-api');
-    //consumer.apply(LoggerMiddleware).forRoutes({path: '*', method: RequestMethod.ALL });
+    consumer.apply(TokenMiddleware).forRoutes('data-api');
+    consumer.apply(LoggerMiddleware).forRoutes({path: '*', method: RequestMethod.ALL });
   }
 }
