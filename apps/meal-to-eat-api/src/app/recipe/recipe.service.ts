@@ -10,10 +10,13 @@ import { Neo4jService } from "../neo4j/neo4j.service";
 
 @Injectable()
 export class RecipeService {
-    constructor(@InjectModel(RecipeModel.name) private recipeModel: Model<RecipeDocument>, @InjectModel(UserModel.name) private userModel: Model<UserDocument>
-    ,private neo4jService: Neo4jService) {}
+    constructor(
+        @InjectModel(RecipeModel.name) private recipeModel: Model<RecipeDocument>,
+        @InjectModel(UserModel.name) private userModel: Model<UserDocument>
+        ,private readonly neo4jService: Neo4jService
+    ) {}
 
-    async getAll(): Promise<Recipe[]> {
+    async getAllRecipes(): Promise<Recipe[]> {
         console.log("API: get all recipes aangeroepen!");
         return this.recipeModel.find();
     }

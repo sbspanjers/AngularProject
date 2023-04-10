@@ -8,17 +8,19 @@ export class Identity {
     @Prop({
         required: true,
         unique: true,
+        type: String,
     })
-    username: string;
+    username!: string;
 
-    @Prop({required: true})
-    hash: string;
+    @Prop({required: true, type: String})
+    hash!: string;
 
     @Prop({
         required: true,
         unique: true,
+        type: String,
       })
-      emailAddress: string;
+      emailAddress!: string;
 }
 
 export const IdentitySchema = SchemaFactory.createForClass(Identity);

@@ -7,7 +7,10 @@ import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(UserModel.name) private userModel: Model<UserDocument>, private authService: AuthService) {}
+  constructor(
+    @InjectModel(UserModel.name) private userModel: Model<UserDocument>, 
+    private readonly authService: AuthService
+  ) {}
 
   async getAll(): Promise<User[]> {
     console.log('API: get all users aangeroepen!');

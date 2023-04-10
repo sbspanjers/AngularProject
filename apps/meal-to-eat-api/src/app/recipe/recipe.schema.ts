@@ -10,45 +10,45 @@ export type RecipeDocument = Recipe & Document;
 
 @Schema()
 export class Recipe {
-    @Prop({default: uuid, index: true})
-    id: string;
+    @Prop({default: uuid, index: true, type: String})
+    id!: string;
 
-    @Prop({required: true})
-    name: string;
+    @Prop({required: true, type: String})
+    name!: string;
 
-    @Prop({required: true})
-    createDate: Date;
+    @Prop({required: true, type: Date})
+    createDate!: Date;
 
-    @Prop({required: true})
-    imgUrl: string;
+    @Prop({required: true, type: String})
+    imgUrl!: string;
 
-    @Prop({required: true})
-    personCount: number;
+    @Prop({required: true, type: Number})
+    personCount!: number;
 
-    @Prop({required: true})
-    cookingTime: number;
+    @Prop({required: true, type: Number})
+    cookingTime!: number;
 
-    @Prop({required: true})
-    kcal: number;
+    @Prop({required: true, type: Number})
+    kcal!: number;
 
-    @Prop({required: true})
-    typeMeal: string;
+    @Prop({required: true, type: String})
+    typeMeal!: string;
 
     @Prop({default: [],
         type: [StepSchema],
     })
-    steps: Step[];
+    steps!: Step[];
 
     @Prop({default: [],
         type: [IngredientSchema],
     })
-    ingredients: Ingredient[];
+    ingredients!: Ingredient[];
 
     @Prop({default: new User,
         type: MongooseSchema.Types.ObjectId,
         ref: 'User'
     })
-    creator: User;
+    creator!: User;
 
 }
 

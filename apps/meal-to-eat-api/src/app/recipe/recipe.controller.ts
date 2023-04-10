@@ -1,15 +1,16 @@
-import { Recipe, User } from '@MealToEat/data';
+import { User } from './../user/user.schema';
+import { Recipe } from "./recipe.schema";
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 import { RecipeService } from './recipe.service';
 
 @Controller('recipe')
 export class RecipeController {
-  constructor(private readonly recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService) {}
 
   @Get()
-  async getAll(): Promise<Recipe[]> {
-    return this.recipeService.getAll();
+  async getAllRecipes(): Promise<Recipe[]> {
+    return this.recipeService.getAllRecipes();
   }
 
   @Get(':id')
